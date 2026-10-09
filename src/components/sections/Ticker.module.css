@@ -1,0 +1,85 @@
+/* ---------- Stack ticker: evidence tape across the page ---------- */
+
+.wrap {
+  position: relative;
+  /* Room for the -1deg tilt: half the band's width × sin(1deg) ≈ 0.9vw. */
+  padding-block: calc(0.9vw + 10px);
+  overflow: hidden;
+  /* Skips rendering (and the marquee) while offscreen. */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 96px;
+}
+
+/* A second, plain strip under the tape for a layered, taped-down feel. */
+.ghost {
+  position: absolute;
+  top: 50%;
+  left: -60px;
+  right: -60px;
+  height: 40px;
+  background: var(--paper-2);
+  border-block: 1px solid var(--line-strong);
+  transform: translateY(-50%) rotate(1.1deg);
+}
+
+.band {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: calc(100% + 120px);
+  height: 56px;
+  margin-left: -60px;
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--paper);
+  transform: rotate(-1deg);
+  box-shadow: var(--shadow-card);
+}
+
+.track {
+  display: flex;
+  flex: none;
+  width: max-content;
+  animation: marquee 52s linear infinite;
+  will-change: transform;
+}
+
+.wrap:hover .track {
+  animation-play-state: paused;
+}
+
+.run {
+  display: flex;
+  flex: none;
+  align-items: center;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.sep {
+  margin-inline: 26px;
+  font-size: 9px;
+  color: var(--signal);
+}
+
+@keyframes marquee {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+}

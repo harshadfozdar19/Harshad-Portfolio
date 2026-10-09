@@ -1,0 +1,391 @@
+/* ---------- Pinned card ---------- */
+.board {
+  position: relative;
+  width: 100%;
+  padding: 12px 14px 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  transform: rotate(-1deg);
+}
+
+/* Push-pin holding the card to the page. */
+.board::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  z-index: 3;
+  width: 15px;
+  height: 15px;
+  margin-left: -7.5px;
+  border-radius: 50%;
+  background: var(--signal);
+  box-shadow:
+    inset -2px -3px 0 color-mix(in srgb, var(--ink) 28%, transparent),
+    inset 2px 2px 0 color-mix(in srgb, var(--paper) 35%, transparent),
+    0 4px 6px -2px color-mix(in srgb, var(--ink) 45%, transparent);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 2px 10px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.sample {
+  color: var(--signal-ink);
+}
+
+/* ---------- Plot ---------- */
+.plot {
+  position: relative;
+  aspect-ratio: 100 / 90;
+  container-type: inline-size;
+  /* Dot grid, like the board's backing paper. */
+  background-image: radial-gradient(circle, var(--line-strong) 0.8px, transparent 1.2px);
+  background-size: 18px 18px;
+  background-position: center;
+}
+
+.strings {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* ---------- Red string ---------- */
+.edge {
+  transition: opacity 0.35s var(--ease);
+}
+
+.string,
+.shadow {
+  fill: none;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 0.65s var(--ease) var(--at) forwards;
+}
+
+.string {
+  stroke: var(--signal);
+  stroke-width: 0.48;
+  transition: stroke-width 0.3s var(--ease);
+}
+
+.shadow {
+  stroke: var(--ink);
+  stroke-width: 0.5;
+  opacity: 0.14;
+}
+
+.correlation {
+  transition: opacity 0.35s var(--ease);
+}
+
+.correlation path {
+  fill: none;
+  stroke: var(--ink-2);
+  stroke-width: 0.32;
+  stroke-dasharray: 1.1 1.1;
+  opacity: 0;
+  animation: fadeTo 0.8s var(--ease) var(--at) forwards;
+  --to: 0.55;
+}
+
+.board[data-active] .edge[data-state="off"],
+.board[data-active] .correlation[data-state="off"] {
+  opacity: 0.14;
+}
+
+.edge[data-state="on"] .string {
+  stroke-width: 0.8;
+}
+
+.score {
+  position: absolute;
+  left: calc(var(--x) * 1%);
+  top: calc(var(--y) * 1%);
+  z-index: 1;
+  padding: 1px 6px;
+  font-family: var(--font-mono);
+  font-size: clamp(9px, 2.1cqi, 10.5px);
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  background: var(--card);
+  border: 1px dashed var(--line-strong);
+  border-radius: 2px;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: fadeTo 0.6s var(--ease) var(--at) forwards;
+  --to: 1;
+  transition:
+    color 0.3s var(--ease),
+    border-color 0.3s var(--ease);
+}
+
+.score[data-state="on"] {
+  color: var(--ink);
+  border-color: var(--signal);
+}
+
+/* ---------- Nodes ---------- */
+.node {
+  position: absolute;
+  left: calc(var(--x) * 1%);
+  top: calc(var(--y) * 1%);
+  z-index: 2;
+  transform: translate(var(--tx, -50%), -50%);
+  transition: opacity 0.35s var(--ease);
+}
+
+/* The anchor (where the strings meet) sits 14px inside an edge chip. */
+.node[data-align="start"] {
+  --tx: -14px;
+  --pin-left: 14px;
+}
+
+.node[data-align="end"] {
+  --tx: calc(-100% + 14px);
+  --pin-left: calc(100% - 14px);
+}
+
+.board[data-active] .node[data-state="off"] {
+  opacity: 0.32;
+}
+
+/* Lands on the board as its string arrives. */
+.land {
+  animation: land 0.55s var(--ease) var(--at) both;
+}
+
+.chip {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  padding: 5px 9px 5px;
+  background: var(--card-hover);
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  box-shadow: 0 6px 12px -10px color-mix(in srgb, var(--ink) 60%, transparent);
+  white-space: nowrap;
+  transform-origin: var(--pin-left, 50%) 0;
+  animation: sway 8s ease-in-out var(--sway-delay) infinite;
+  transition:
+    border-color 0.3s var(--ease),
+    box-shadow 0.3s var(--ease);
+}
+
+/* Small pin at the top of each chip. */
+.chip::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: var(--pin-left, 50%);
+  width: 7px;
+  height: 7px;
+  margin-left: -3.5px;
+  border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 2px 2px -1px color-mix(in srgb, var(--ink) 50%, transparent);
+}
+
+.node[data-focus] .chip {
+  border-color: var(--signal);
+  box-shadow: 0 10px 18px -12px color-mix(in srgb, var(--ink) 70%, transparent);
+}
+
+.kind {
+  font-family: var(--font-mono);
+  font-size: clamp(9px, 2.1cqi, 10px);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  line-height: 1.25;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.value {
+  font-family: var(--font-mono);
+  font-size: clamp(10px, 2.8cqi, 12.5px);
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+/* Suspect: vermilion frame and a slow radar ring. */
+.node[data-tone="suspect"] .chip {
+  border-color: var(--signal);
+  background: color-mix(in srgb, var(--signal) 9%, var(--card-hover));
+}
+
+.node[data-tone="suspect"] .kind {
+  color: var(--signal-ink);
+}
+
+.node[data-tone="suspect"] .chip::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border: 1px solid var(--signal);
+  border-radius: 4px;
+  opacity: 0;
+  animation: ring 2.6s var(--ease) 1s infinite;
+}
+
+/* Verdict: a filled tag, stamped slightly askew. */
+.node[data-tone="verdict"] .chip {
+  padding: 5px 10px;
+  background: var(--signal-ink);
+  border-color: var(--signal-ink);
+  transform: rotate(-3deg);
+  animation: none;
+}
+
+.node[data-tone="verdict"] .chip::before {
+  background: var(--ink);
+}
+
+.node[data-tone="verdict"] .value {
+  font-size: clamp(10px, 2.6cqi, 12px);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--paper);
+}
+
+.node[data-tone="verdict"] .land {
+  animation-name: stamp;
+  animation-duration: 0.5s;
+}
+
+/* ---------- Offscreen / hidden tab: hold every animation where it is ---------- */
+.board:not([data-run]) :is(.string, .shadow, .correlation path, .score, .land, .chip),
+.board:not([data-run]) .chip::after {
+  animation-play-state: paused;
+}
+
+/* ---------- Keyframes ---------- */
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fadeTo {
+  to {
+    opacity: var(--to);
+  }
+}
+
+@keyframes land {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.86);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes stamp {
+  0% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(-0.7deg);
+  }
+  50% {
+    transform: rotate(0.7deg) translateY(-1px);
+  }
+}
+
+@keyframes ring {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  80%,
+  100% {
+    opacity: 0;
+    transform: scale(1.18, 1.45);
+  }
+}
+
+/* ---------- Reduced motion / no script: the finished board, still ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .string,
+  .shadow,
+  .correlation path,
+  .score,
+  .land,
+  .chip,
+  .node[data-tone="suspect"] .chip::after {
+    animation: none;
+  }
+
+  .string,
+  .shadow {
+    stroke-dashoffset: 0;
+  }
+
+  .correlation path {
+    opacity: 0.55;
+  }
+
+  .score {
+    opacity: 1;
+  }
+}
+
+@media (scripting: none) {
+  .string,
+  .shadow,
+  .correlation path,
+  .score,
+  .land {
+    animation: none;
+  }
+
+  .string,
+  .shadow {
+    stroke-dashoffset: 0;
+  }
+
+  .correlation path {
+    opacity: 0.55;
+  }
+
+  .score {
+    opacity: 1;
+  }
+}

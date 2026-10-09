@@ -1,0 +1,58 @@
+/* § 04 Exhibits: a stack of evidence folders, a sub-header rule, then a grid of index cards. */
+
+.folders {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(48px, 7vw, 88px);
+}
+
+/* ---------- "Also on file" sub-header ---------- */
+.subhead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: clamp(72px, 10vw, 128px);
+  margin-bottom: clamp(20px, 3vw, 28px);
+  padding-top: 14px;
+  border-top: 1px solid var(--line-strong);
+}
+
+.subheadLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+}
+
+.square {
+  flex: none;
+  width: 7px;
+  height: 7px;
+  background: var(--signal);
+}
+
+/* ---------- Index-card grid ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+}
+
+.gridItem {
+  display: flex;
+  min-width: 0;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1000px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+}

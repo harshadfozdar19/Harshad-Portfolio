@@ -1,0 +1,265 @@
+/* ---------- Press badge ---------- */
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  padding: 30px 20px 20px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  transform: rotate(-0.6deg);
+  transition:
+    transform 0.7s var(--ease),
+    background-color 0.4s var(--ease);
+}
+
+@media (min-width: 960px) {
+  .card {
+    max-width: 360px;
+    padding: 32px 24px 22px;
+    transform: rotate(-1.5deg);
+  }
+}
+
+@media (hover: hover) {
+  .card:hover {
+    transform: rotate(0deg) translateY(-2px);
+    background: var(--card-hover);
+  }
+}
+
+/* Lanyard slot punched through the top of the badge. */
+.slot {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  width: 44px;
+  height: 8px;
+  translate: -50% 0;
+  border-radius: 999px;
+  background: var(--paper);
+  border: 1px solid var(--line-strong);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--line-strong);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------- Portrait (Fig. 1) ---------- */
+.figure {
+  margin: 0;
+}
+
+.frame {
+  position: relative;
+  container-type: inline-size;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  background-color: var(--paper-2);
+  background-image: repeating-linear-gradient(-45deg, var(--line) 0 1px, transparent 1px 6px);
+}
+
+.image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Colour version: sits over the duotone and develops on hover / focus. */
+.colour {
+  opacity: 0;
+  transition: opacity 0.6s var(--ease);
+}
+
+.card:hover .colour,
+.card:focus-within .colour {
+  opacity: 1;
+}
+
+/* Fallback when no portrait is configured. */
+.monogram {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding-right: 0.06em;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 140px;
+  font-size: 46cqi;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+
+.caption {
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------- Name + stamp ---------- */
+.nameRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.name {
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 3vw, 32px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.name span {
+  display: block;
+}
+
+/* ---------- Identity rows with dotted leaders ---------- */
+.rows {
+  margin: 14px 0 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.row {
+  display: flex;
+  align-items: baseline;
+  padding-block: 6px;
+  border-bottom: 1px solid var(--line);
+}
+
+.row:first-child {
+  border-top: 1px solid var(--line-strong);
+}
+
+.row dt {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: baseline;
+  min-width: 0;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* The leader: a dotted rule from the label to the value, sitting on the baseline. */
+.row dt::after {
+  content: "";
+  flex: 1 1 auto;
+  min-width: 12px;
+  margin-inline: 8px;
+  border-bottom: 2px dotted var(--line-strong);
+}
+
+.row dd {
+  flex: 0 1 auto;
+  min-width: 0;
+  margin: 0;
+  text-align: right;
+  color: var(--ink);
+}
+
+/* ---------- Barcode ---------- */
+.code {
+  display: grid;
+  gap: 6px;
+  margin-top: 16px;
+}
+
+.barcode {
+  display: block;
+  height: 30px;
+  /* Two periods (21px and 43px) interfere so the pattern doesn't visibly repeat across the card. */
+  background-image:
+    repeating-linear-gradient(90deg, transparent 0 29px, var(--card) 29px 31px, transparent 31px 43px),
+    repeating-linear-gradient(
+      90deg,
+      var(--ink) 0 2px,
+      transparent 2px 4px,
+      var(--ink) 4px 5px,
+      transparent 5px 8px,
+      var(--ink) 8px 11px,
+      transparent 11px 12px,
+      var(--ink) 12px 13px,
+      transparent 13px 17px,
+      var(--ink) 17px 19px,
+      transparent 19px 21px
+    );
+}
+
+.digits {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  color: var(--muted);
+}
+
+/* ---------- "Verified" rubber stamp ---------- */
+.stamp {
+  position: relative;
+  z-index: 1;
+  flex: none;
+  display: inline-block;
+  margin: 0 4px -18px 0;
+  padding: 5px 12px 4px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  /* --signal-ink keeps the stamp text at AA contrast on the card. */
+  color: var(--signal-ink);
+  border: 4px double var(--signal-ink);
+  border-radius: 3px;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (min-width: 400px) {
+  .stamp {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 960px) {
+  .stamp {
+    font-size: 18px;
+  }
+}
+
+/* Night desk: multiply would swallow the ink on a dark card. */
+:global(:root[data-theme="dark"]) .stamp {
+  mix-blend-mode: normal;
+}
+
+@media (prefers-color-scheme: dark) {
+  :global(:root:not([data-theme="light"])) .stamp {
+    mix-blend-mode: normal;
+  }
+}

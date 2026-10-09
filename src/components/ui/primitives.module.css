@@ -1,0 +1,129 @@
+/* ---------- SectionHeader ---------- */
+.header {
+  margin-bottom: clamp(40px, 6vw, 72px);
+}
+
+.rule {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line-strong);
+  margin-bottom: clamp(20px, 3vw, 32px);
+}
+
+.index {
+  display: inline-flex;
+  gap: 14px;
+}
+
+.index b {
+  color: var(--signal-ink);
+  font-weight: 500;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(44px, 7vw, 92px);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  max-width: 18ch;
+  text-wrap: balance;
+}
+
+.title em {
+  font-style: italic;
+  color: var(--signal-ink);
+}
+
+.intro {
+  margin-top: 20px;
+  max-width: 60ch;
+  color: var(--muted);
+  font-size: 18px;
+}
+
+/* ---------- Tag ---------- */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  white-space: nowrap;
+  transition:
+    background-color 0.25s var(--ease),
+    color 0.25s var(--ease),
+    border-color 0.25s var(--ease);
+}
+
+.tagSignal {
+  color: var(--signal-ink);
+  border-color: color-mix(in srgb, var(--signal) 45%, transparent);
+  background: var(--signal-soft);
+}
+
+.tagInteractive:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+/* ---------- Redact ---------- */
+.redact {
+  position: relative;
+  display: inline;
+  white-space: nowrap;
+}
+
+.redact::after {
+  content: "";
+  position: absolute;
+  inset: 0.08em -0.08em 0.02em;
+  background: var(--redact);
+  transform-origin: right center;
+  transform: scaleX(1);
+  transition: transform 0.9s var(--ease);
+  transition-delay: var(--redact-delay, 0s);
+}
+
+.redactOpen::after {
+  transform: scaleX(0);
+}
+
+/* ---------- Highlight ---------- */
+.highlight {
+  background-image: linear-gradient(
+    transparent 58%,
+    var(--highlight) 58%,
+    var(--highlight) 92%,
+    transparent 92%
+  );
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  transition: background-size 1.1s var(--ease);
+  transition-delay: var(--highlight-delay, 0.15s);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.highlightOn {
+  background-size: 100% 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .redact::after {
+    transform: scaleX(0);
+  }
+  .highlight {
+    background-size: 100% 100%;
+  }
+}

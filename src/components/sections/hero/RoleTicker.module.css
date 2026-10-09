@@ -1,0 +1,79 @@
+.ticker {
+  display: inline;
+}
+
+/* Every phrase in one grid cell: the box is sized by the longest, so nothing shifts. */
+.stack {
+  display: inline-grid;
+  max-width: 100%;
+  vertical-align: bottom;
+  overflow: hidden;
+  overflow: clip;
+  overflow-clip-margin: 0.12em;
+}
+
+.item {
+  grid-area: 1 / 1;
+  transition:
+    transform 0.75s var(--ease),
+    opacity 0.5s var(--ease);
+}
+
+.item[data-state="waiting"] {
+  transform: translateY(105%);
+  opacity: 0;
+  visibility: hidden;
+  transition: none;
+}
+
+.item[data-state="leaving"] {
+  transform: translateY(-105%);
+  opacity: 0;
+  transition:
+    transform 0.6s var(--ease),
+    opacity 0.4s var(--ease);
+}
+
+.mark {
+  padding-inline: 0.06em;
+  font-style: italic;
+  color: var(--ink);
+  background-image: linear-gradient(
+    transparent 58%,
+    var(--highlight) 58%,
+    var(--highlight) 92%,
+    transparent 92%
+  );
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.item[data-state="active"] .mark {
+  animation: sweep 0.9s var(--ease) 0.45s both;
+}
+
+.item[data-state="leaving"] .mark {
+  background-size: 100% 100%;
+}
+
+@keyframes sweep {
+  from {
+    background-size: 0% 100%;
+  }
+  to {
+    background-size: 100% 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item {
+    transition: none;
+  }
+
+  .item[data-state="active"] .mark {
+    animation: none;
+    background-size: 100% 100%;
+  }
+}

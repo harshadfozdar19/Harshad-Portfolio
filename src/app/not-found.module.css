@@ -1,0 +1,113 @@
+.page {
+  display: grid;
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-block: clamp(48px, 10vw, 120px);
+}
+
+.sheet {
+  position: relative;
+  max-width: 760px;
+  margin-inline: auto;
+  padding: clamp(24px, 6vw, 56px);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.title {
+  margin-top: clamp(28px, 6vw, 48px);
+  font-family: var(--font-serif);
+  font-size: clamp(48px, 12vw, 112px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.title em {
+  font-style: italic;
+  color: var(--signal-ink);
+}
+
+.body {
+  max-width: 46ch;
+  margin-top: 20px;
+  color: var(--ink-2);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  margin-top: 28px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 6px;
+  transition:
+    color 0.2s var(--ease),
+    text-decoration-color 0.2s var(--ease);
+}
+
+.link:hover {
+  color: var(--signal-ink);
+  text-decoration-color: currentColor;
+}
+
+.stamp {
+  position: absolute;
+  right: clamp(24px, 6vw, 56px);
+  bottom: clamp(26px, 6vw, 58px);
+  padding: 6px 14px;
+  border: 3px solid var(--signal);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--signal-ink);
+  transform: rotate(-8deg);
+  opacity: 0.85;
+  pointer-events: none;
+  animation: stamp 0.5s var(--ease) 0.2s both;
+}
+
+@keyframes stamp {
+  from {
+    opacity: 0;
+    transform: rotate(-8deg) scale(1.6);
+  }
+  to {
+    opacity: 0.85;
+    transform: rotate(-8deg) scale(1);
+  }
+}
+
+@media (max-width: 639px) {
+  .stamp {
+    position: static;
+    display: block;
+    width: fit-content;
+    margin-top: 24px;
+  }
+}

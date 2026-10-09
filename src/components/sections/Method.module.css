@@ -1,0 +1,50 @@
+/* § 03 Method: an alternate band of graph paper holding the pipeline, with a mono caption row under it. */
+
+.method {
+  isolation: isolate;
+  background: var(--paper-2);
+  border-block: 1px solid var(--line);
+}
+
+/* Faint graph paper: 32px hairline cells that fade out towards the edges. */
+.method::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.7;
+  background-image:
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px),
+    linear-gradient(to right, var(--line) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: center top;
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 25%, transparent 80%);
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 25%, transparent 80%);
+}
+
+/* ---------- Caption row ---------- */
+.traits {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 18px;
+  margin-top: clamp(36px, 5vw, 56px);
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  color: var(--ink-2);
+}
+
+/* Every item leads with a vermilion square, so the row reads the same when it wraps. */
+.trait {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sep {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  background: var(--signal);
+}

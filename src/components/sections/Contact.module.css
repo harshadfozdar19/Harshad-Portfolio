@@ -1,0 +1,211 @@
+/* § 08 Contact: the closer, on a --paper-2 band with a faint "Case open" watermark. */
+
+.contact {
+  overflow: hidden;
+  background: var(--paper-2);
+  border-top: 1px solid var(--line);
+}
+
+.watermark {
+  position: absolute;
+  right: -0.04em;
+  bottom: -0.2em;
+  z-index: 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(120px, 24vw, 340px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  color: var(--ink);
+  opacity: 0.05;
+  pointer-events: none;
+  user-select: none;
+}
+
+.watermark::before {
+  content: attr(data-text);
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* Scale the shared section title up for the closer. */
+.head h2 {
+  max-width: 12ch;
+  font-size: clamp(56px, 11vw, 140px);
+  line-height: 0.92;
+}
+
+/* ---------- Lead + open to ---------- */
+.brief {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 28px;
+}
+
+.lead {
+  max-width: 46ch;
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.openTo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tags > li {
+  display: flex;
+  max-width: 100%;
+}
+
+/* ---------- Channels ---------- */
+.channels {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  margin-top: clamp(48px, 7vw, 80px);
+  padding-top: 24px;
+  border-top: 1px solid var(--line-strong);
+}
+
+.emailLine {
+  max-width: 100%;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(28px, 5.2vw, 56px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+}
+
+/* Inline so the underline and sweep follow each wrapped line; the vertical padding
+   grows the hit area to at least 44px while backgrounds stay on the text (content-box). */
+.email {
+  padding-block: 6px;
+  color: var(--ink);
+  background-origin: content-box;
+  background-clip: content-box;
+  /* Layer 1: highlighter sweep (hidden until hover). Layer 2: hairline underline. */
+  background-image:
+    linear-gradient(var(--highlight), var(--highlight)),
+    linear-gradient(var(--line-strong), var(--line-strong));
+  background-repeat: no-repeat;
+  background-position:
+    0 88%,
+    0 96%;
+  background-size:
+    0% 42%,
+    100% 1px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  transition: background-size 0.7s var(--ease);
+}
+
+.email:hover,
+.email:focus-visible {
+  background-size:
+    100% 42%,
+    100% 1px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background-color 0.25s var(--ease),
+    border-color 0.25s var(--ease),
+    color 0.25s var(--ease);
+}
+
+.action:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+/* CopyEmail confirmation states (set via data-state on the button). */
+.action[data-state="copied"],
+.action[data-state="copied"]:hover {
+  background: transparent;
+  border-color: var(--pine);
+  color: var(--pine);
+}
+
+.action[data-state="failed"],
+.action[data-state="failed"]:hover {
+  background: transparent;
+  border-color: var(--signal);
+  color: var(--signal-ink);
+}
+
+/* ---------- Facts ---------- */
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 48px;
+  margin: clamp(40px, 6vw, 64px) 0 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.facts > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.facts dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--ink-2);
+}
+
+@media (min-width: 960px) {
+  .brief {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: 64px;
+    align-items: start;
+  }
+
+  .openTo {
+    padding-top: 6px;
+  }
+}

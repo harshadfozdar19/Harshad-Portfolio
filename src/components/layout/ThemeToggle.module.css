@@ -1,0 +1,58 @@
+.toggle {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    border-color 0.25s var(--ease),
+    background-color 0.25s var(--ease);
+}
+
+.toggle:hover {
+  border-color: var(--line-strong);
+  background: var(--card);
+}
+
+.moon,
+.sun {
+  grid-area: 1 / 1;
+  transition:
+    opacity 0.35s var(--ease),
+    transform 0.5s var(--ease);
+}
+
+/* Light (default): offer the moon. */
+.sun {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.6);
+}
+
+/* Night desk: offer the sun. */
+:global(:root[data-theme="dark"]) .moon {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.6);
+}
+
+:global(:root[data-theme="dark"]) .sun {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :global(:root:not([data-theme="light"])) .moon {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.6);
+  }
+
+  :global(:root:not([data-theme="light"])) .sun {
+    opacity: 1;
+    transform: none;
+  }
+}

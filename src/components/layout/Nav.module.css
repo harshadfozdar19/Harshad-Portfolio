@@ -1,0 +1,417 @@
+/* ---------- Header shell ---------- */
+.header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  height: var(--nav-h);
+}
+
+/*
+ * The frosted backing lives on a pseudo-element: a backdrop-filter on the header itself
+ * would become the containing block for the fixed mobile menu and trap it in 64px.
+ */
+.header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--paper) 85%, transparent);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  opacity: 0;
+  transition: opacity 0.35s var(--ease);
+}
+
+.header[data-scrolled]::before,
+.header[data-open]::before {
+  opacity: 1;
+}
+
+.header[data-open]::before {
+  background: var(--paper);
+}
+
+/* ---------- Reading progress ---------- */
+.progress {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 3;
+  height: 2px;
+  background: var(--signal);
+  transform-origin: 0 50%;
+  pointer-events: none;
+}
+
+.nav {
+  height: 100%;
+}
+
+.bar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 100%;
+}
+
+/* ---------- Monogram stamp ---------- */
+.monogram {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-left: -4px;
+  flex: none;
+}
+
+.monogramBox {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 19px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  box-shadow:
+    inset 0 0 0 3px var(--paper),
+    inset 0 0 0 4px var(--line);
+  transition:
+    transform 0.4s var(--ease),
+    color 0.25s var(--ease),
+    border-color 0.25s var(--ease);
+}
+
+.monogram:hover .monogramBox {
+  color: var(--signal-ink);
+  border-color: var(--signal-ink);
+  transform: rotate(-4deg);
+}
+
+/* ---------- Inline links (desktop) ---------- */
+.links {
+  display: none;
+}
+
+.link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 8px 0 16px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.25s var(--ease);
+}
+
+/* Vermilion "you are here" square. Always present so nothing shifts when it appears. */
+.link::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  background: var(--signal);
+  transform: translateY(-50%) scale(0);
+  transition: transform 0.35s var(--ease);
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 8px;
+  bottom: 11px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.4s var(--ease);
+}
+
+.link:hover {
+  color: var(--ink);
+}
+
+.link:hover::after {
+  transform: scaleX(1);
+}
+
+.link[aria-current] {
+  color: var(--ink);
+}
+
+.link[aria-current]::before {
+  transform: translateY(-50%) scale(1);
+}
+
+/* ---------- Actions ---------- */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.contact {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  transition:
+    background-color 0.25s var(--ease),
+    color 0.25s var(--ease);
+}
+
+.contact:hover,
+.contact[aria-current] {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.menuButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.menuIcon {
+  position: relative;
+  display: block;
+  width: 16px;
+  height: 8px;
+}
+
+.menuIcon span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: currentColor;
+  transition:
+    transform 0.4s var(--ease),
+    top 0.4s var(--ease);
+}
+
+.menuIcon span:first-child {
+  top: 0;
+}
+
+.menuIcon span:last-child {
+  top: calc(100% - 1.5px);
+}
+
+.menuButton[aria-expanded="true"] .menuIcon span:first-child {
+  top: calc(50% - 0.75px);
+  transform: rotate(45deg);
+}
+
+.menuButton[aria-expanded="true"] .menuIcon span:last-child {
+  top: calc(50% - 0.75px);
+  transform: rotate(-45deg);
+}
+
+/* ---------- Mobile menu overlay ---------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-top: var(--nav-h);
+  background: var(--paper);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.35s var(--ease),
+    visibility 0s linear 0.35s;
+}
+
+.overlay[data-open] {
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 0.35s var(--ease),
+    visibility 0s;
+}
+
+.overlayInner {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding-block: 24px 32px;
+}
+
+.overlayLabel {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.menuItem {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.3s var(--ease),
+    transform 0.3s var(--ease);
+}
+
+.overlay[data-open] .menuItem {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.6s var(--ease) calc(80ms + var(--i) * 45ms),
+    transform 0.7s var(--ease) calc(80ms + var(--i) * 45ms);
+}
+
+.menuLink {
+  display: grid;
+  grid-template-columns: 52px 1fr auto;
+  align-items: baseline;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 0 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.menuNumber {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--signal-ink);
+}
+
+.menuLabel {
+  font-family: var(--font-serif);
+  font-size: clamp(38px, 11vw, 60px);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  transition: color 0.25s var(--ease);
+}
+
+.menuArrow {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--muted);
+  transition: transform 0.35s var(--ease);
+}
+
+.menuLink:hover .menuArrow,
+.menuLink:focus-visible .menuArrow {
+  transform: translateX(4px);
+  color: var(--ink);
+}
+
+.menuLink[aria-current] .menuLabel {
+  font-style: italic;
+  color: var(--signal-ink);
+}
+
+.menuFoot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin-top: auto;
+  padding-top: 32px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.menuFoot a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 4px;
+  overflow-wrap: anywhere;
+}
+
+.menuFoot span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+/* ---------- Desktop ---------- */
+@media (min-width: 900px) {
+  .bar {
+    gap: 24px;
+  }
+
+  .links {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-left: auto;
+  }
+
+  .actions {
+    margin-left: 8px;
+  }
+
+  .contact {
+    display: inline-flex;
+  }
+
+  .menuButton,
+  .overlay {
+    display: none;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1060px) {
+  .link {
+    padding-inline: 14px 6px;
+    letter-spacing: 0.06em;
+  }
+
+  .link::after {
+    left: 14px;
+    right: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menuItem {
+    transform: none;
+  }
+}

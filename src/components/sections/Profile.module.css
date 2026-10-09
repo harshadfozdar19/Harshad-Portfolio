@@ -1,0 +1,201 @@
+/* ---------- Layout: badge (5 cols) + dossier (7 cols) ---------- */
+.layout {
+  display: grid;
+  gap: clamp(56px, 9vw, 80px);
+}
+
+.badge {
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+}
+
+.badgeReveal {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+@media (min-width: 960px) {
+  .layout {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: clamp(24px, 3vw, 40px);
+    align-items: start;
+  }
+
+  .badge {
+    grid-column: 1 / span 5;
+    justify-content: flex-start;
+  }
+
+  .badgeReveal {
+    justify-content: flex-start;
+  }
+
+  .dossier {
+    grid-column: 6 / span 7;
+    padding-left: clamp(0px, 2vw, 32px);
+  }
+}
+
+/* The badge (~780px with its portrait) only pins when the whole card fits under the nav. */
+@media (min-width: 960px) and (min-height: 880px) {
+  .badge {
+    position: sticky;
+    top: calc(var(--nav-h) + 24px);
+  }
+}
+
+/* ---------- About ---------- */
+.about {
+  display: grid;
+  gap: 1.3em;
+  max-width: 62ch;
+}
+
+.paragraph {
+  font-size: clamp(17px, 1.5vw, 19px);
+  line-height: 1.7;
+  color: var(--ink-2);
+}
+
+.paragraph:first-child {
+  font-size: clamp(19px, 1.9vw, 22px);
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+/* ---------- Pull quote ---------- */
+.quote {
+  margin-top: clamp(48px, 7vw, 72px);
+  padding-block: clamp(28px, 4vw, 40px);
+  border-block: 1px solid var(--line-strong);
+}
+
+.quoteBody {
+  position: relative;
+  padding-left: clamp(44px, 6vw, 72px);
+}
+
+.quoteMark {
+  position: absolute;
+  top: -0.14em;
+  left: -0.04em;
+  font-family: var(--font-serif);
+  font-size: clamp(84px, 9vw, 120px);
+  line-height: 1;
+  color: var(--signal);
+  user-select: none;
+}
+
+.quoteBody p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(28px, 3.2vw, 36px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.quoteBy {
+  margin-top: 18px;
+  padding-left: clamp(44px, 6vw, 72px);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------- Stats ledger ---------- */
+.stats {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  margin-top: clamp(48px, 7vw, 72px);
+  border-top: 1px solid var(--line-strong);
+}
+
+/* Phone: one row per figure, numeral beside its label. */
+.stat {
+  display: grid;
+  grid-template-columns: minmax(3.2rem, auto) minmax(0, 1fr);
+  grid-template-areas:
+    "index index"
+    "value label";
+  align-items: center;
+  column-gap: 16px;
+  padding-block: 18px 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.statIndex {
+  grid-area: index;
+  margin-bottom: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--signal-ink);
+}
+
+.statValue {
+  position: relative;
+  grid-area: value;
+  font-family: var(--font-serif);
+  font-size: 56px;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--ink);
+}
+
+.statLabel {
+  grid-area: label;
+  max-width: 34ch;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.55;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Wider: a 2×2 ledger with hairline dividers. */
+@media (min-width: 560px) {
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stat {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "index"
+      "value"
+      "label";
+    align-items: start;
+    align-content: start;
+    padding: 22px 24px 28px;
+  }
+
+  .stat:nth-child(odd) {
+    padding-left: 0;
+    border-right: 1px solid var(--line);
+  }
+
+  .stat:nth-child(even) {
+    padding-right: 0;
+  }
+
+  .statIndex {
+    margin-bottom: 14px;
+  }
+
+  .statValue {
+    font-size: clamp(64px, 7vw, 80px);
+  }
+
+  .statLabel {
+    margin-top: 14px;
+  }
+}

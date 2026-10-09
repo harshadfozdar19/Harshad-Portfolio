@@ -1,0 +1,192 @@
+/*
+ * Teleprinter slip. Light mode: an ink-black slip on paper. Night desk: a raised
+ * card with a hairline, so it doesn't vanish into the dark page.
+ * Accents are only vermilion, highlighter yellow and pine, re-mixed for contrast
+ * against whichever background the slip has.
+ */
+.log {
+  --log-bg: var(--ink);
+  --log-fg: var(--paper);
+  --log-dim: color-mix(in srgb, var(--paper) 52%, var(--ink));
+  --log-signal: color-mix(in srgb, var(--signal) 78%, var(--paper));
+  --log-ok: color-mix(in srgb, var(--pine) 42%, var(--paper));
+  --log-border: var(--ink);
+  --log-hole: color-mix(in srgb, var(--paper) 16%, var(--ink));
+  --rows: 11;
+
+  position: relative;
+}
+
+:global(:root[data-theme="dark"]) .log {
+  --log-bg: var(--card);
+  --log-fg: var(--ink);
+  --log-dim: var(--muted);
+  --log-signal: var(--signal-ink);
+  --log-ok: var(--pine);
+  --log-border: var(--line-strong);
+  --log-hole: var(--paper);
+}
+
+@media (prefers-color-scheme: dark) {
+  :global(:root:not([data-theme="light"])) .log {
+    --log-bg: var(--card);
+    --log-fg: var(--ink);
+    --log-dim: var(--muted);
+    --log-signal: var(--signal-ink);
+    --log-ok: var(--pine);
+    --log-border: var(--line-strong);
+    --log-hole: var(--paper);
+  }
+}
+
+.panel {
+  position: relative;
+  padding: 0 24px;
+  background: var(--log-bg);
+  color: var(--log-fg);
+  border: 1px solid var(--log-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  font-family: var(--font-mono);
+}
+
+/* Sprocket holes down both edges of the slip. */
+.panel::before,
+.panel::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  width: 8px;
+  background-image: radial-gradient(circle, var(--log-hole) 2px, transparent 2.6px);
+  background-size: 8px 14px;
+  background-repeat: repeat-y;
+}
+
+.panel::before {
+  left: 7px;
+}
+
+.panel::after {
+  right: 7px;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0 9px;
+  border-bottom: 1px dashed color-mix(in srgb, var(--log-fg) 22%, transparent);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--log-dim);
+  white-space: nowrap;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--log-ok);
+  animation: blink 1.6s steps(2, jump-none) infinite;
+}
+
+/*
+ * Fixed height: lines start at the top and, once they no longer fit (narrow screens
+ * wrap long lines), the oldest scroll off the top like paper feeding through.
+ */
+.screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: calc(var(--rows) * 1.7em + 24px);
+  padding: 12px 0;
+  overflow: hidden;
+  font-size: 11.5px;
+  line-height: 1.7;
+}
+
+.lines {
+  flex: none;
+  min-height: 100%;
+}
+
+.line {
+  padding-left: 2ch;
+  text-indent: -2ch;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.prompt,
+.signal {
+  color: var(--log-signal);
+}
+
+.dim {
+  color: var(--log-dim);
+}
+
+.ok {
+  color: var(--log-ok);
+}
+
+.mark {
+  padding: 0 2px;
+  margin: 0 -2px;
+  background: var(--highlight);
+  /* Ink on yellow in light mode; light ink on a translucent yellow wash at night. */
+  color: var(--ink);
+}
+
+.caret {
+  display: inline-block;
+  width: 0.62em;
+  height: 1.15em;
+  margin-left: 1px;
+  vertical-align: -0.2em;
+  background: var(--log-fg);
+  animation: blink 1.05s steps(2, jump-none) infinite;
+}
+
+.caret[data-typing] {
+  animation: none;
+}
+
+.log:not([data-run]) :is(.caret, .dot) {
+  animation-play-state: paused;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (min-width: 640px) {
+  .log {
+    --rows: 9;
+  }
+
+  .screen {
+    font-size: 12.5px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret,
+  .dot {
+    animation: none;
+  }
+}

@@ -1,0 +1,190 @@
+/* Evidence folder: a card with an ink tab on its top-left edge, a diagram panel and the write-up. */
+
+.folder {
+  position: relative;
+  /* Room for the tab, which sits above the card's top edge. */
+  margin-top: 30px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 0 var(--radius) var(--radius) var(--radius);
+  box-shadow: var(--shadow-card);
+  transition:
+    transform 0.6s var(--ease),
+    background-color 0.4s var(--ease);
+}
+
+.tab {
+  position: absolute;
+  bottom: 100%;
+  left: -1px;
+  padding: 7px 30px 6px 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: var(--ink);
+  border-radius: var(--radius) 0 0 0;
+  /* Slanted right edge, like a folder tab. */
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 100%, 0 100%);
+  transition: background-color 0.35s var(--ease);
+}
+
+@media (hover: hover) {
+  /* Handled like paper: lifted and turned slightly. */
+  .folder:hover {
+    transform: translateY(-6px) rotate(-0.3deg);
+    background: var(--card-hover);
+  }
+
+  .folder:hover .tab {
+    background: var(--signal-ink);
+  }
+}
+
+.body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(20px, 3.5vw, 44px);
+  padding: clamp(12px, 2.4vw, 28px);
+}
+
+/* ---------- Diagram panel ---------- */
+.visual {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  background-color: var(--paper-2);
+  background-image:
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px),
+    linear-gradient(to right, var(--line) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: -1px -1px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+}
+
+.canvas {
+  display: grid;
+  flex: 1;
+  place-items: center;
+  padding: clamp(10px, 2.4vw, 22px);
+}
+
+.caption {
+  padding: 10px 14px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--paper-2);
+  border-top: 1px solid var(--line);
+}
+
+.arrow {
+  color: var(--signal-ink);
+}
+
+/* ---------- Write-up ---------- */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+  padding: 0 4px 6px;
+}
+
+.meta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: clamp(30px, 3.4vw, 40px);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.sub {
+  display: block;
+  font-style: italic;
+  color: var(--ink-2);
+}
+
+.summary {
+  max-width: 62ch;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink-2);
+}
+
+.points {
+  display: grid;
+  gap: 8px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.points li {
+  position: relative;
+  padding-left: 28px;
+}
+
+/* Em-dash marker, drawn rather than typed so it stays crisp and vermilion at any size. */
+.points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(0.775em - 1px);
+  width: 16px;
+  height: 2px;
+  background: var(--signal);
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 18px;
+  border-top: 1px dashed var(--line-strong);
+}
+
+/* ---------- Wide: diagram ≈ 45%, write-up ≈ 55%, alternating sides ---------- */
+@media (min-width: 900px) {
+  .body {
+    grid-template-columns: minmax(0, 45fr) minmax(0, 55fr);
+    align-items: stretch;
+  }
+
+  .folder[data-flip] .body {
+    grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
+  }
+
+  .folder[data-flip] .visual {
+    order: 2;
+  }
+
+  .content {
+    justify-content: center;
+    padding: 8px 8px 8px 0;
+  }
+
+  .folder[data-flip] .content {
+    padding: 8px 0 8px 8px;
+  }
+}

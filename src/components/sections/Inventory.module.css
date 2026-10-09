@@ -1,0 +1,141 @@
+/* § 05 Inventory: an evidence ledger, one hairline row per skill group. */
+
+.ledgerHead {
+  display: none;
+}
+
+.ledger {
+  border-top: 1px solid var(--line-strong);
+}
+
+.row {
+  --bleed: 0px;
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  gap: 14px;
+  padding-block: 22px 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* Hover paper: bleeds slightly past the hairlines so content stays aligned with the header. */
+.row::after {
+  content: "";
+  position: absolute;
+  inset: 0 calc(-1 * var(--bleed));
+  z-index: -1;
+  background: var(--card);
+  opacity: 0;
+  transition: opacity 0.35s var(--ease);
+}
+
+/* Vermilion marker bar on the active row. */
+.row::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  left: calc(-1 * var(--bleed));
+  width: 3px;
+  background: var(--signal);
+  transform: scaleY(0);
+  transform-origin: top center;
+  transition: transform 0.45s var(--ease);
+}
+
+.row:hover::after {
+  opacity: 1;
+}
+
+.row:hover::before {
+  transform: scaleY(1);
+}
+
+/* Mobile: code + count share a line, the title sits below. */
+.head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "code count"
+    "title title";
+  align-items: baseline;
+  column-gap: 16px;
+  row-gap: 4px;
+  min-width: 0;
+}
+
+.code {
+  grid-area: code;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--signal-ink);
+}
+
+.title {
+  grid-area: title;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(26px, 2.6vw, 30px);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.count {
+  grid-area: count;
+  justify-self: end;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 8px;
+  min-width: 0;
+}
+
+.items > li {
+  display: flex;
+  max-width: 100%;
+}
+
+@media (min-width: 900px) {
+  .ledgerHead {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    column-gap: 40px;
+    padding-bottom: 12px;
+  }
+
+  .row {
+    --bleed: 20px;
+    grid-template-columns: 280px 1fr;
+    column-gap: 40px;
+    padding-block: 28px 30px;
+  }
+
+  .head {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "code"
+      "title"
+      "count";
+    align-content: start;
+    row-gap: 8px;
+  }
+
+  .count {
+    justify-self: start;
+  }
+
+  .items {
+    padding-top: 4px;
+  }
+}

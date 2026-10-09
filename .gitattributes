@@ -1,0 +1,8 @@
+# Normalise line endings so Prettier's "lf" setting holds on Windows checkouts.
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.ico binary
+*.woff binary
+*.woff2 binary
