@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Harshad Fozdar — Full Stack & AI Engineer</title>
+  <meta name="description" content="Harshad Fozdar — Full Stack & AI Engineer building cybersecurity, OSINT and AI investigation systems." />
+  <meta name="robots" content="noindex, nofollow" />
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%238b6cff'/%3E%3Cstop offset='1' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='%2307070d'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial' font-weight='700' font-size='28' fill='url(%23g)'%3EHF%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <div class="progress" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav">
+    <a href="#top" class="logo" aria-label="Home"><span>HF</span></a>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#system">System</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#credentials">Credentials</a>
+    </nav>
+    <a href="#contact" class="btn btn-sm btn-ghost nav-cta magnetic">Let’s talk</a>
+    <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
+  </header>
+  <nav class="mobile-menu" id="mobile-menu">
+    <a href="#about">About</a><a href="#experience">Experience</a><a href="#system">System</a>
+    <a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#credentials">Credentials</a><a href="#contact">Contact</a>
+  </nav>
+
+  <main id="top">
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <canvas id="constellation" aria-hidden="true"></canvas>
+      <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow reveal"><span class="dot-live"></span> Full Stack Developer Intern @ Frautect</div>
+          <h1 class="hero-title" aria-label="Harshad Fozdar">
+            <span class="line"><span class="split">Harshad</span></span>
+            <span class="line"><span class="split grad-text">Fozdar</span></span>
+          </h1>
+          <p class="hero-role reveal">
+            I engineer <span class="rotator"><span class="rot-word">AI investigation engines</span></span>
+          </p>
+          <p class="hero-sub reveal">
+            Full Stack Developer Intern at Frautect, building <strong>cybersecurity, OSINT and AI investigation
+            systems</strong>: BullMQ/Redis worker pipelines, Playwright discovery scrapers, embedding-based semantic
+            search, and a LangGraph + Gemini agent that gathers evidence and returns structured risk verdicts.
+          </p>
+          <div class="hero-cta reveal">
+            <a href="#projects" class="btn btn-primary magnetic">View my work <span class="arr" aria-hidden="true">→</span></a>
+            <a href="#contact" class="btn btn-ghost magnetic">Get in touch</a>
+          </div>
+          <div class="hero-meta reveal">
+            <span><span aria-hidden="true">📍</span> Jaipur, Rajasthan</span><span class="sep" aria-hidden="true"></span><span>B.E. CSE ’26</span><span class="sep" aria-hidden="true"></span><span>3 internships · 8 projects</span>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="terminal tilt">
+            <div class="term-head">
+              <span class="tl r"></span><span class="tl y"></span><span class="tl g"></span>
+              <span class="term-title">investigation-agent — live</span>
+            </div>
+            <pre class="term-body" id="terminal"></pre>
+            <div class="term-foot">
+              <span class="chip-mini">LangGraph</span><span class="chip-mini">Gemini</span><span class="chip-mini">BullMQ</span><span class="chip-mini">Redis</span>
+            </div>
+          </div>
+          <div class="float-badge fb-1"><b>Risk</b> verdict · structured</div>
+          <div class="float-badge fb-2"><span class="pulse-dot"></span> workers online</div>
+        </div>
+      </div>
+
+      <a href="#about" class="scroll-hint" aria-label="Scroll down"><span></span></a>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <section class="marquee" aria-label="Technologies">
+      <div class="marquee-track">
+        <span>TypeScript</span><i aria-hidden="true">✦</i><span>NestJS</span><i aria-hidden="true">✦</i><span>LangGraph</span><i aria-hidden="true">✦</i><span>Gemini</span><i aria-hidden="true">✦</i>
+        <span>Next.js</span><i aria-hidden="true">✦</i><span>React</span><i aria-hidden="true">✦</i><span>BullMQ</span><i aria-hidden="true">✦</i><span>Redis</span><i aria-hidden="true">✦</i>
+        <span>MongoDB</span><i aria-hidden="true">✦</i><span>Playwright</span><i aria-hidden="true">✦</i><span>FastAPI</span><i aria-hidden="true">✦</i><span>Pinecone</span><i aria-hidden="true">✦</i>
+        <span>Python</span><i aria-hidden="true">✦</i><span>LangChain</span><i aria-hidden="true">✦</i><span>OpenCV</span><i aria-hidden="true">✦</i><span>Docker</span><i aria-hidden="true">✦</i>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section id="about" class="section">
+      <div class="container about-grid">
+        <div class="about-left">
+          <p class="kicker reveal">01 — About</p>
+          <h2 class="h2 reveal">I build systems that <span class="grad-text">find what’s hidden</span> and explain why it matters.</h2>
+          <figure class="portrait reveal">
+            <div class="portrait-ring">
+              <img src="photo.jpg" alt="Harshad Fozdar" onerror="this.closest('.portrait').classList.add('no-photo'); this.remove();" />
+              <span class="portrait-fallback" aria-hidden="true">HF</span>
+            </div>
+            <figcaption>
+              <b>Harshad Fozdar</b>
+              <span>Full Stack &amp; AI Engineer · He/Him</span>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="about-copy">
+          <p class="reveal">
+            I’m a Full Stack Developer working where <strong>security, data and AI</strong> meet. At Frautect I build
+            products that monitor GitHub repositories, catch brand impersonation and credential exposure, track threat
+            intelligence and monitor social media.
+          </p>
+          <p class="reveal">
+            I care about the whole problem, not only the code: designing the system, integrating LLMs, debugging,
+            deploying, and changing things based on how real users behave. Much of my work is in the parts people don’t
+            see: scheduled jobs, risk-prioritised queues, enrichment workers, and an <strong>AI investigation
+            agent</strong> that reasons over evidence and returns a verdict an analyst can act on.
+          </p>
+          <blockquote class="quote reveal">
+            “I believe developers are hired for what they’ve built, not where they studied.”
+          </blockquote>
+          <div class="stats">
+            <div class="stat reveal"><b data-count="3">0</b><span>Internships: Frautect, Metacrafters, Bharat Intern</span></div>
+            <div class="stat reveal"><b data-count="8">0</b><span>Projects built across AI, security, vision &amp; web</span></div>
+            <div class="stat reveal"><b data-count="5">0</b><span>Security product areas at Frautect, from GitHub monitoring to threat intel</span></div>
+            <div class="stat reveal"><b data-count="3">0</b><span>LLM systems built: investigation agent, RAG chatbot, Ace-Prep</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section id="experience" class="section">
+      <div class="container">
+        <p class="kicker reveal">02 — Experience</p>
+        <h2 class="h2 reveal">Where I’ve been <span class="grad-text">shipping</span></h2>
+
+        <div class="timeline">
+          <article class="exp-card reveal spotlight">
+            <div class="exp-top">
+              <div class="exp-logo" aria-hidden="true">F</div>
+              <div class="exp-head">
+                <h3>Frautect Technologies Pvt. Ltd.</h3>
+                <p>Full Stack Developer Intern · Jaipur, Rajasthan · On-site</p>
+              </div>
+              <div class="exp-date"><span class="dot-live"></span> Aug 2026 — Present</div>
+            </div>
+
+            <div class="product-chips">
+              <span>GitHub Repository Monitoring</span><span>Brand Impersonation</span><span>Credential Exposure</span>
+              <span>Threat Intelligence</span><span>Social-Media Monitoring</span>
+            </div>
+
+            <div class="exp-pillars">
+              <div class="pillar">
+                <div class="p-icon" aria-hidden="true">🧠</div>
+                <h4>AI Investigation Engine</h4>
+                <p>Built a <b>LangGraph + Gemini</b> agent with tool-based evidence gathering, contextual reasoning, risk analysis and <b>structured AI verdicts</b>.</p>
+              </div>
+              <div class="pillar">
+                <div class="p-icon" aria-hidden="true">⚙️</div>
+                <h4>Async Monitoring Pipelines</h4>
+                <p>Scheduled jobs find new targets, <b>BullMQ/Redis</b> queues them, and workers enrich them with repository and identity signals. Risk-based priority and retry handling are built in.</p>
+              </div>
+              <div class="pillar">
+                <div class="p-icon" aria-hidden="true">🛰️</div>
+                <h4>OSINT Discovery &amp; Scraping</h4>
+                <p>Social-media discovery through search engines, <b>Playwright</b> browser automation, account extraction, deduplication and enrichment.</p>
+              </div>
+              <div class="pillar">
+                <div class="p-icon" aria-hidden="true">🔎</div>
+                <h4>Semantic Correlation</h4>
+                <p><b>Embedding-based search</b> that links repositories, contributors, commits, deployments, accounts and identity signals during an investigation.</p>
+              </div>
+              <div class="pillar">
+                <div class="p-icon" aria-hidden="true">🧱</div>
+                <h4>Backend Services</h4>
+                <p><b>NestJS, MongoDB, REST APIs</b> for repository discovery, scanning, account processing, enrichment and asynchronous workflows.</p>
+              </div>
+              <div class="pillar">
+                <div class="p-icon" aria-hidden="true">📊</div>
+                <h4>Analyst Tooling &amp; QA</h4>
+                <p>Internal <b>React / Next.js</b> tools for monitoring, findings, evidence review, investigations and AI-assisted analysis. I also run API, functional, integration and regression testing.</p>
+              </div>
+            </div>
+          </article>
+
+          <div class="exp-mini-grid">
+            <article class="exp-mini reveal spotlight">
+              <div class="exp-top">
+                <div class="exp-logo sm l-meta" aria-hidden="true">M</div>
+                <div class="exp-head">
+                  <h3>Metacrafters</h3>
+                  <p>Intern · Remote</p>
+                </div>
+              </div>
+              <div class="mini-date">Jun 2024 — Aug 2024</div>
+              <p>Hands-on blockchain programme building on <b>Ethereum</b> with JavaScript tooling. Completed with a certificate.</p>
+              <div class="stack"><span>JavaScript</span><span>Ethereum</span><span>Web3</span><span><span aria-hidden="true">🏅</span> Certified</span></div>
+            </article>
+            <article class="exp-mini reveal spotlight">
+              <div class="exp-top">
+                <div class="exp-logo sm l-bharat" aria-hidden="true">B</div>
+                <div class="exp-head">
+                  <h3>Bharat Intern</h3>
+                  <p>Full Stack Developer Intern</p>
+                </div>
+              </div>
+              <div class="mini-date">Jul 2023 — Aug 2023</div>
+              <p>My first internship: building web applications with <b>JavaScript</b>, HTML and CSS.</p>
+              <div class="stack"><span>JavaScript</span><span>HTML</span><span>CSS</span></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SYSTEM / PIPELINE ============ -->
+    <section id="system" class="section system">
+      <div class="container">
+        <p class="kicker reveal">03 — Signature System</p>
+        <h2 class="h2 reveal">How a target becomes a <span class="grad-text">verdict</span></h2>
+        <p class="lead reveal">The monitoring-to-investigation pipeline I engineered at Frautect: scheduled, asynchronous, and ending in a structured AI verdict.</p>
+
+        <div class="pipeline reveal">
+          <div class="node"><span class="n-step">01</span><div class="n-ic" aria-hidden="true">⏱</div><h3>Scheduled Jobs</h3><p>Detect newly added targets</p></div>
+          <div class="pipe"><i></i></div>
+          <div class="node"><span class="n-step">02</span><div class="n-ic" aria-hidden="true">📥</div><h3>BullMQ · Redis</h3><p>Risk-prioritised queues &amp; retries</p></div>
+          <div class="pipe"><i></i></div>
+          <div class="node"><span class="n-step">03</span><div class="n-ic" aria-hidden="true">🛠</div><h3>Workers</h3><p>Scrape · discover · dedupe</p></div>
+          <div class="pipe"><i></i></div>
+          <div class="node"><span class="n-step">04</span><div class="n-ic" aria-hidden="true">🧬</div><h3>Enrichment</h3><p>Repo &amp; identity signals → MongoDB</p></div>
+          <div class="pipe"><i></i></div>
+          <div class="node node-accent"><span class="n-step">05</span><div class="n-ic" aria-hidden="true">🤖</div><h3>LangGraph Agent</h3><p>Tools · semantic search · Gemini</p></div>
+          <div class="pipe"><i></i></div>
+          <div class="node node-final"><span class="n-step">06</span><div class="n-ic" aria-hidden="true">✅</div><h3>AI Verdict</h3><p>Structured risk for analysts</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section id="projects" class="section">
+      <div class="container">
+        <p class="kicker reveal">04 — Projects</p>
+        <h2 class="h2 reveal">Selected <span class="grad-text">work</span></h2>
+
+        <div class="projects">
+          <!-- P1 -->
+          <article class="project reveal tilt spotlight">
+            <div class="proj-visual v-rag" aria-hidden="true">
+              <div class="rag-flow">
+                <span class="doc">📄</span><span class="arrow-anim"></span>
+                <span class="chunks"><i></i><i></i><i></i><i></i></span><span class="arrow-anim"></span>
+                <span class="vec">◈</span><span class="arrow-anim"></span>
+                <span class="llm">✦</span>
+              </div>
+              <div class="vlabel">ingest → chunk → embed → retrieve → generate</div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-tag">AI · Retrieval · Nov – Dec 2025</div>
+              <h3>RAG-Based AI Chatbot: Document Q&amp;A</h3>
+              <p>A full Retrieval-Augmented Generation pipeline with <b>hybrid search</b>: document ingestion, chunking, embeddings, Pinecone vector storage, semantic retrieval, context construction and <b>Gemini</b> generation. Prompts are built from retrieved context, so answers stay grounded in your documents with fewer hallucinations.</p>
+              <ul class="proj-points">
+                <li>Pinecone similarity search builds prompts on the fly</li>
+                <li>FastAPI backend with request validation, structured error handling and logging; endpoints tested in Postman</li>
+                <li>React UI for upload, retrieval and Q&amp;A</li>
+              </ul>
+              <div class="stack"><span>Python</span><span>FastAPI</span><span>React</span><span>Pinecone</span><span>Gemini</span></div>
+            </div>
+          </article>
+
+          <!-- P2 -->
+          <article class="project reveal tilt spotlight">
+            <div class="proj-visual v-ace" aria-hidden="true">
+              <div class="score-ring">
+                <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" class="ring-bg"/><circle cx="60" cy="60" r="50" class="ring-fg"/></svg>
+                <div class="score-num"><b>8.6</b><span>/10</span></div>
+              </div>
+              <div class="bars"><i style="--h:40%"></i><i style="--h:62%"></i><i style="--h:55%"></i><i style="--h:78%"></i><i style="--h:86%"></i></div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-tag">AI · EdTech · Jul – Oct 2025</div>
+              <h3>Ace-Prep: AI Answer Evaluation for Communication Skills</h3>
+              <p>An AI-powered platform for improving communication skills. Users submit answers, <b>Gemini</b> evaluates them, and the model’s output is converted into structured assessment and scoring data that drives performance and progress tracking.</p>
+              <ul class="proj-points">
+                <li>Gemini output converted into structured assessment data</li>
+                <li>MongoDB schemas for users, submissions, scores &amp; history</li>
+                <li>REST API workflows for auth, submission and evaluation, with request validation and iterative testing</li>
+              </ul>
+              <div class="stack"><span>React</span><span>Node.js</span><span>Express</span><span>MongoDB</span><span>Gemini</span></div>
+            </div>
+          </article>
+
+          <!-- P3 -->
+          <article class="project reveal tilt spotlight">
+            <div class="proj-visual v-osint" aria-hidden="true">
+              <div class="radar"><i class="sweep"></i><b style="--x:28%;--y:34%"></b><b style="--x:66%;--y:28%"></b><b style="--x:58%;--y:70%"></b><b class="hot" style="--x:36%;--y:64%"></b></div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-tag">Work · Frautect · 2026</div>
+              <h3>OSINT &amp; Social-Media Monitoring</h3>
+              <p>Social-media discovery workflows that find accounts through search engines and Playwright automation, then extract, deduplicate and enrich them and queue them by risk for downstream AI investigation.</p>
+              <ul class="proj-points">
+                <li>Search-engine discovery + Playwright automation</li>
+                <li>Account extraction, deduplication &amp; enrichment</li>
+                <li>Worker queues with retries and risk-based prioritisation</li>
+              </ul>
+              <div class="stack"><span>NestJS</span><span>Playwright</span><span>BullMQ</span><span>Redis</span><span>MongoDB</span></div>
+            </div>
+          </article>
+        </div>
+
+        <h3 class="sub-h reveal">More things I’ve built</h3>
+        <div class="mini-projects">
+          <article class="mp reveal spotlight">
+            <div class="mp-top"><span class="mp-ic" aria-hidden="true">🛡️</span><span class="mp-year">Security</span></div>
+            <h4>Website Security Analysis System</h4>
+            <p>A full-stack system designed to detect phishing and spoofed websites, applying my security work beyond the job.</p>
+            <div class="stack"><span>React</span><span>Node.js</span></div>
+          </article>
+          <article class="mp reveal spotlight">
+            <div class="mp-top"><span class="mp-ic" aria-hidden="true">🦅</span><span class="mp-year">Jun 2024</span></div>
+            <h4>Garud: Vision Object Detection</h4>
+            <p>Object detection on road-traffic footage using the <b>YOLOv5</b> deep-learning model and OpenCV, drawing bounding boxes around detected vehicles.</p>
+            <div class="stack"><span>YOLOv5</span><span>OpenCV</span><span>Python</span></div>
+          </article>
+          <article class="mp reveal spotlight">
+            <div class="mp-top"><span class="mp-ic" aria-hidden="true">🏔️</span><span class="mp-year">Feb – Mar 2024</span></div>
+            <h4>Avalanche Prediction</h4>
+            <p>An avalanche-prediction project in Python with a web interface, built with a team of three.</p>
+            <div class="stack"><span>Python</span><span>Web Development</span></div>
+          </article>
+          <article class="mp reveal spotlight">
+            <div class="mp-top"><span class="mp-ic" aria-hidden="true">🧑‍💼</span><span class="mp-year">Oct 2022 – Jan 2023</span></div>
+            <h4>Face Recognition Attendance</h4>
+            <p>A Chandigarh University project built with a teammate: attendance software that recognises faces with OpenCV and marks attendance automatically.</p>
+            <div class="stack"><span>OpenCV</span><span>Pandas</span><span>Python</span></div>
+          </article>
+          <article class="mp reveal spotlight">
+            <div class="mp-top"><span class="mp-ic" aria-hidden="true">🍬</span><span class="mp-year">MERN</span></div>
+            <h4>Mithai Magic: Sweet Shop Manager</h4>
+            <p>A MERN-stack web application for managing a sweet shop, built on REST APIs.</p>
+            <div class="stack"><span>MongoDB</span><span>Express</span><span>React</span><span>Node</span></div>
+          </article>
+          <article class="mp reveal spotlight">
+            <div class="mp-top"><span class="mp-ic" aria-hidden="true">✅</span><span class="mp-year">Shipped</span></div>
+            <h4>Task Management System</h4>
+            <p>One of the three production-grade systems I’ve shipped: a full-stack task management application.</p>
+            <div class="stack"><span>Full Stack</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section id="skills" class="section">
+      <div class="container">
+        <p class="kicker reveal">05 — Toolkit</p>
+        <h2 class="h2 reveal">The <span class="grad-text">stack</span> I build with</h2>
+
+        <div class="bento">
+          <div class="cell c-wide reveal spotlight">
+            <h3><span class="ic" aria-hidden="true">✦</span> AI / LLM</h3>
+            <div class="tags"><span>LangGraph</span><span>LangChain</span><span>Gemini API</span><span>Claude</span><span>RAG</span><span>Hybrid Search</span><span>Semantic Search</span><span>Embeddings</span><span>AI Agents</span><span>Tool Calling</span><span>Structured Outputs</span><span>Prompt Engineering</span><span>Context Engineering</span></div>
+          </div>
+          <div class="cell reveal spotlight">
+            <h3><span class="ic" aria-hidden="true">{ }</span> Languages</h3>
+            <div class="tags"><span>TypeScript</span><span>JavaScript</span><span>Python</span><span>C++</span><span>SQL</span></div>
+          </div>
+          <div class="cell reveal spotlight">
+            <h3><span class="ic" aria-hidden="true">⧉</span> Backend</h3>
+            <div class="tags"><span>NestJS</span><span>Node.js</span><span>Express</span><span>FastAPI</span><span>REST</span><span>Microservices</span><span>JWT</span></div>
+          </div>
+          <div class="cell reveal spotlight">
+            <h3><span class="ic" aria-hidden="true">◐</span> Frontend</h3>
+            <div class="tags"><span>React</span><span>Next.js</span><span>Responsive UI</span><span>HTML5</span><span>CSS3</span></div>
+          </div>
+          <div class="cell reveal spotlight">
+            <h3><span class="ic" aria-hidden="true">◈</span> Data</h3>
+            <div class="tags"><span>MongoDB</span><span>MySQL</span><span>Pinecone</span><span>Vector DBs</span><span>Redis</span></div>
+          </div>
+          <div class="cell c-wide reveal spotlight">
+            <h3><span class="ic" aria-hidden="true">⌖</span> Automation &amp; OSINT</h3>
+            <div class="tags"><span>Playwright</span><span>Web Scraping</span><span>Search Discovery</span><span>Data Extraction</span><span>Data Enrichment</span><span>GitHub API</span><span>Deduplication</span></div>
+          </div>
+          <div class="cell c-wide reveal spotlight">
+            <h3><span class="ic" aria-hidden="true">⚙</span> Engineering &amp; Testing</h3>
+            <div class="tags"><span>BullMQ</span><span>Docker</span><span>Git</span><span>Postman</span><span>System Design</span><span>OOP</span><span>Data Structures</span><span>API Testing</span><span>Integration Testing</span><span>Functional Testing</span><span>Regression Testing</span><span>Debugging</span></div>
+          </div>
+          <div class="cell c-wide reveal spotlight">
+            <h3><span class="ic" aria-hidden="true">◎</span> Vision, ML &amp; Web3</h3>
+            <div class="tags"><span>OpenCV</span><span>YOLOv5</span><span>Pandas</span><span>Data Science</span><span>Ethereum</span><span>Blockchain</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPLORING ============ -->
+    <section class="section">
+      <div class="container">
+        <p class="kicker reveal">06 — Now exploring</p>
+        <h2 class="h2 reveal">Pushing into <span class="grad-text">what’s next</span></h2>
+        <div class="explore">
+          <div class="ex-card reveal spotlight">
+            <span class="ex-num">A</span>
+            <h3>Decision-centric AI</h3>
+            <p class="ex-quote">“What if AI didn’t need to write anything, and just needed to <b>decide</b>?”</p>
+            <p>Experimenting with <b>Jev</b> and <b>Laya</b> to see how lightweight decision models for classification, scoring and routing work alongside LLM agent systems. I wrote a LinkedIn carousel on where Jev fits next to LLMs: “Jev + LLM, not Jev vs LLM.”</p>
+          </div>
+          <div class="ex-card reveal spotlight">
+            <span class="ex-num">B</span>
+            <h3>Context Engineering</h3>
+            <p>Better context construction and selection, retrieval quality, tool instructions and structured outputs, with less noise reaching the model.</p>
+          </div>
+          <div class="ex-card reveal spotlight">
+            <span class="ex-num">C</span>
+            <h3>Agent Architectures</h3>
+            <p>LangGraph state management, tool selection, multi-step reasoning, model routing, tool-call validation and controlled execution.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EDUCATION & CREDENTIALS ============ -->
+    <section id="credentials" class="section">
+      <div class="container">
+        <p class="kicker reveal">07 — Education &amp; Credentials</p>
+        <h2 class="h2 reveal">Always <span class="grad-text">learning</span></h2>
+
+        <div class="edu reveal spotlight">
+          <div class="edu-ic" aria-hidden="true">🎓</div>
+          <div class="edu-main">
+            <h3>Chandigarh University</h3>
+            <p>Bachelor of Engineering, Computer Science · Mohali, Punjab</p>
+          </div>
+          <div class="edu-side"><b>7.70</b><span>CGPA</span></div>
+          <div class="edu-side"><b>2022–26</b><span>Batch</span></div>
+        </div>
+
+        <div class="creds">
+          <div class="cred reveal spotlight">
+            <span class="cred-issuer c-coursera">Coursera · Meta</span>
+            <h3>React Native</h3>
+            <p>Cross-platform mobile development with React</p>
+          </div>
+          <div class="cred reveal spotlight">
+            <span class="cred-issuer c-coursera">Coursera · Mar 2024</span>
+            <h3>Databases &amp; SQL for Data Science with Python</h3>
+            <p>MySQL, data science, querying &amp; analysis</p>
+          </div>
+          <div class="cred reveal spotlight">
+            <span class="cred-issuer c-coursera">Coursera · Meta · Feb 2024</span>
+            <h3>Introduction to Databases</h3>
+            <p>DBMS fundamentals, MySQL &amp; schema design</p>
+          </div>
+          <div class="cred reveal spotlight">
+            <span class="cred-issuer c-meta">Metacrafters · 2024</span>
+            <h3>Internship Certificate</h3>
+            <p>Ethereum &amp; JavaScript · Jun – Aug 2024</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact" class="section contact">
+      <div class="aurora small" aria-hidden="true"><i></i><i></i></div>
+      <div class="container contact-inner">
+        <p class="kicker reveal">08 — Contact</p>
+        <h2 class="contact-title reveal">Let’s build something <span class="grad-text">intelligent</span>.</h2>
+        <p class="lead reveal">I’m looking for roles where I can build production systems, ship features that matter, and work with teams who care about shipping.</p>
+        <div class="open-to reveal">
+          <span>Full-Stack Engineering</span><span>Backend Development</span><span>AI / Product</span><span>Early-stage Startups</span><span>Founding Teams</span>
+        </div>
+        <div class="contact-actions reveal">
+          <a class="btn btn-primary btn-lg magnetic" href="mailto:harshad622004fozdar@gmail.com">harshad622004fozdar<wbr>@gmail.com</a>
+          <button class="btn btn-ghost btn-lg magnetic" id="copyEmail" type="button">Copy email</button>
+        </div>
+        <div class="contact-links reveal">
+          <a href="https://www.linkedin.com/in/harshad-fozdar-85966a24a/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+          <a href="tel:+919824495918">+91 98244 95918</a>
+          <span class="loc">Jaipur · On-site · Hybrid · Remote</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container foot-inner">
+      <span>© <span id="year"></span> Harshad Fozdar</span>
+      <span>Hired for what I’ve built.</span>
+      <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
+    </div>
+  </footer>
+
+  <div class="toast" role="status" aria-live="polite">Email copied <span aria-hidden="true">✓</span></div>
+  <script src="script.js"></script>
+</body>
+</html>
