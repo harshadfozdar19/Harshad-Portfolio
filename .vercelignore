@@ -1,0 +1,13 @@
+# Files the Vercel CLI must NOT upload when deploying from this machine.
+# Note: public/private/ (portrait + résumé PDF) is intentionally uploaded — it is git-ignored
+# so it never reaches GitHub, but it is part of the live site.
+.git
+node_modules
+.next
+resume
+.env*
+tests
+test-results
+playwright-report
+blob-report
+docs

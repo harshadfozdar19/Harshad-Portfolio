@@ -79,10 +79,6 @@ export function Contact() {
                 Résumé (PDF) <span aria-hidden="true">↓</span>
               </a>
             ) : null}
-            <a className={styles.action} href={`tel:${profile.phone}`}>
-              <span className="visually-hidden">Call </span>
-              {profile.phoneDisplay}
-            </a>
           </div>
         </Reveal>
 

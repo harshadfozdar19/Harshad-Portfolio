@@ -24,8 +24,6 @@ export const profile: Profile = {
   headline: "Full Stack Developer Intern @ Frautect",
   location: "Jaipur, Rajasthan",
   email: "harshad622004fozdar@gmail.com",
-  phone: "+919824495918",
-  phoneDisplay: "+91 98244 95918",
   linkedin: "https://www.linkedin.com/in/harshad-fozdar-85966a24a/",
   pronouns: "He/Him",
   roles: [

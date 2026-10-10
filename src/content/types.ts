@@ -11,8 +11,6 @@ export interface Profile {
   headline: string;
   location: string;
   email: string;
-  phone: string;
-  phoneDisplay: string;
   linkedin: string;
   pronouns: string;
   /** Rotating phrases after "I engineer …" in the hero. */
