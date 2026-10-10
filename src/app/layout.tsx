@@ -90,6 +90,9 @@ const personJsonLd = {
     "OSINT",
     "BullMQ",
     "Playwright",
+    "PostgreSQL",
+    "Prompt Engineering",
+    "Context Engineering",
   ],
 };
 

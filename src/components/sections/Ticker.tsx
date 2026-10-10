@@ -10,6 +10,7 @@ const STACK = [
   "Gemini",
   "BullMQ",
   "Redis",
+  "PostgreSQL",
   "MongoDB",
   "Playwright",
   "FastAPI",
