@@ -50,11 +50,11 @@ export const profile: Profile = {
   ],
   workModes: "On-site · Hybrid · Remote",
   year: 2026,
-  // Portrait paths come only from the git-ignored .env.local (the files live in /public/private/).
-  // Unset (fresh clone / CI): the Profile ID card falls back to an "HF" monogram.
-  photo: process.env.NEXT_PUBLIC_PROFILE_PHOTO,
-  photoMono: process.env.NEXT_PUBLIC_PROFILE_PHOTO_MONO,
-  resume: process.env.NEXT_PUBLIC_RESUME_URL,
+  // Published portrait + résumé live in /public/private/. Env vars can override the paths;
+  // set them to an empty string to hide the photo (monogram fallback) or the résumé links.
+  photo: process.env.NEXT_PUBLIC_PROFILE_PHOTO ?? "/private/portrait.jpg",
+  photoMono: process.env.NEXT_PUBLIC_PROFILE_PHOTO_MONO ?? "/private/portrait-mono.jpg",
+  resume: process.env.NEXT_PUBLIC_RESUME_URL ?? "/private/Harshad_Fozdar_Resume.pdf",
 };
 
 export const stats: Stat[] = [

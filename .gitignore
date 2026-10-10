@@ -46,8 +46,15 @@ next-env.d.ts
 /blob-report/
 /playwright/.cache/
 
-# private, local-only assets (portrait) — never committed
-/public/private/
+# public/private/: only the published portrait + résumé PDF are committed (they appear on the live site);
+# anything else dropped in this folder stays local.
+/public/private/*
+!/public/private/portrait.jpg
+!/public/private/portrait-mono.jpg
+!/public/private/Harshad_Fozdar_Resume.pdf
 
 # private résumé source + output (local only)
 /resume/
+
+# private local notes (never committed or deployed)
+/.private/

@@ -24,8 +24,8 @@ export interface Profile {
   year: number;
   /**
    * Colour portrait for the Profile ID card (4:5, 720×900): a path under /public.
-   * Read from NEXT_PUBLIC_PROFILE_PHOTO and never hard-coded, because the file is private and
-   * git-ignored. When neither photo is set, the card shows an "HF" monogram instead.
+   * Defaults to the committed /private/portrait.jpg; NEXT_PUBLIC_PROFILE_PHOTO overrides it.
+   * When neither photo is set, the card shows an "HF" monogram instead.
    */
   photo?: string;
   /**
@@ -35,7 +35,7 @@ export interface Profile {
   photoMono?: string;
   /**
    * Optional résumé PDF path under /public, e.g. "/private/Harshad_Fozdar_Resume.pdf".
-   * Set via NEXT_PUBLIC_RESUME_URL in the git-ignored .env.local; when unset, résumé links are hidden.
+   * Defaults to the committed PDF; NEXT_PUBLIC_RESUME_URL overrides it. When empty, résumé links are hidden.
    */
   resume?: string;
 }
