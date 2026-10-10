@@ -48,3 +48,6 @@ next-env.d.ts
 
 # private, local-only assets (portrait) — never committed
 /public/private/
+
+# private résumé source + output (local only)
+/resume/

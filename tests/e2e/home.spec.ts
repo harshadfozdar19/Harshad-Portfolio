@@ -160,4 +160,17 @@ test.describe("home page", () => {
       .poll(() => horizontalOverflow(page), { message: "overflow at 320px" })
       .toBeLessThanOrEqual(0);
   });
+
+  test("résumé links, when configured, serve a PDF", async ({ page, request }) => {
+    await page.goto("/");
+    const links = page.locator('a[download][href$=".pdf"]');
+    // The résumé is local-only (set via NEXT_PUBLIC_RESUME_URL in .env.local), so CI builds have no links.
+    test.skip((await links.count()) === 0, "No résumé configured for this build");
+
+    const href = await links.first().getAttribute("href");
+    expect(href).toBeTruthy();
+    const response = await request.get(href!);
+    expect(response.status()).toBe(200);
+    expect(response.headers()["content-type"]).toContain("application/pdf");
+  });
 });

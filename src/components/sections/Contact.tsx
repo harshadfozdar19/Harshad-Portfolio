@@ -70,6 +70,15 @@ export function Contact() {
               LinkedIn <span aria-hidden="true">↗</span>
               <span className="visually-hidden"> (opens in a new tab)</span>
             </a>
+            {profile.resume ? (
+              <a
+                className={styles.action}
+                href={profile.resume}
+                download={`${profile.firstName}_${profile.lastName}_Resume.pdf`}
+              >
+                Résumé (PDF) <span aria-hidden="true">↓</span>
+              </a>
+            ) : null}
             <a className={styles.action} href={`tel:${profile.phone}`}>
               <span className="visually-hidden">Call </span>
               {profile.phoneDisplay}

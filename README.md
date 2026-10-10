@@ -145,11 +145,12 @@ them. On CI, failures retry twice with a trace and upload an HTML report as an a
 The site runs on any platform that runs Next.js: Vercel, or any Node 22 host with
 `npm ci && npm run build && npm run start`.
 
-| Variable                         | Purpose                                                                                                      |
-| -------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| `NEXT_PUBLIC_SITE_URL`           | Public origin, such as `https://example.com`. Turns on indexing and `sitemap.xml`, and points OG URLs at it. |
-| `NEXT_PUBLIC_PROFILE_PHOTO`      | Optional. Path to the colour portrait, such as `/private/portrait.jpg`.                                      |
-| `NEXT_PUBLIC_PROFILE_PHOTO_MONO` | Optional. Path to the duotone portrait shown by default on the ID card.                                      |
+| Variable                         | Purpose                                                                                                        |
+| -------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_SITE_URL`           | Public origin, such as `https://example.com`. Turns on indexing and `sitemap.xml`, and points OG URLs at it.   |
+| `NEXT_PUBLIC_PROFILE_PHOTO`      | Optional. Path to the colour portrait, such as `/private/portrait.jpg`.                                        |
+| `NEXT_PUBLIC_PROFILE_PHOTO_MONO` | Optional. Path to the duotone portrait shown by default on the ID card.                                        |
+| `NEXT_PUBLIC_RESUME_URL`         | Optional. Path to a résumé PDF, such as `/private/Harshad_Fozdar_Resume.pdf`. Shows the résumé download links. |
 
 `NEXT_PUBLIC_*` values are inlined at build time, so set them before `npm run build`.
 
@@ -169,7 +170,9 @@ page, so the preferred route is a hash-based policy built on Next's experimental
    `NEXT_PUBLIC_PROFILE_PHOTO_MONO` in `.env.local`. Use 4:5 images, 720×900. Without them, the ID
    card shows an "HF" monogram. The folder is git-ignored, so portraits never reach the repo, and a
    Git-connected deploy needs them supplied separately.
-3. Run `npm run check` and `npm run test:e2e` before pushing.
+3. To offer a résumé download, put the PDF in `public/private/` and set `NEXT_PUBLIC_RESUME_URL` in `.env.local`.
+   Without it, the nav, hero and contact résumé links are hidden.
+4. Run `npm run check` and `npm run test:e2e` before pushing.
 
 ## License
 

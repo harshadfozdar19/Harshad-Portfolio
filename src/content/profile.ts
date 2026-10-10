@@ -56,6 +56,7 @@ export const profile: Profile = {
   // Unset (fresh clone / CI): the Profile ID card falls back to an "HF" monogram.
   photo: process.env.NEXT_PUBLIC_PROFILE_PHOTO,
   photoMono: process.env.NEXT_PUBLIC_PROFILE_PHOTO_MONO,
+  resume: process.env.NEXT_PUBLIC_RESUME_URL,
 };
 
 export const stats: Stat[] = [

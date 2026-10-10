@@ -35,6 +35,11 @@ export interface Profile {
    * Shown by default on the ID card; it crossfades to `photo` on hover when both are set.
    */
   photoMono?: string;
+  /**
+   * Optional résumé PDF path under /public, e.g. "/private/Harshad_Fozdar_Resume.pdf".
+   * Set via NEXT_PUBLIC_RESUME_URL in the git-ignored .env.local; when unset, résumé links are hidden.
+   */
+  resume?: string;
 }
 
 export interface Stat {

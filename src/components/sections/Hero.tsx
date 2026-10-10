@@ -97,6 +97,15 @@ export function Hero() {
               <a href="#contact" className={styles.secondary}>
                 Get in touch
               </a>
+              {profile.resume ? (
+                <a
+                  href={profile.resume}
+                  download={`${profile.firstName}_${profile.lastName}_Resume.pdf`}
+                  className={styles.secondary}
+                >
+                  Résumé <span aria-hidden="true">↓</span>
+                </a>
+              ) : null}
             </div>
           </div>
 

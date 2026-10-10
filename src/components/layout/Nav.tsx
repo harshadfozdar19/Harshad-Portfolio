@@ -27,6 +27,7 @@ const INLINE_LINKS = navItems.filter((item) => item.id !== "contact");
 const CONTACT = navItems.find((item) => item.id === "contact");
 
 const MENU_ID = "site-menu";
+const RESUME_FILENAME = `${profile.firstName}_${profile.lastName}_Resume.pdf`;
 const DESKTOP_QUERY = "(min-width: 900px)";
 const SCROLLED_AFTER = 24;
 
@@ -183,6 +184,11 @@ export function Nav() {
 
           <div className={styles.actions}>
             <ThemeToggle />
+            {profile.resume ? (
+              <a href={profile.resume} download={RESUME_FILENAME} className={styles.resume}>
+                Résumé <span aria-hidden="true">↓</span>
+              </a>
+            ) : null}
             {CONTACT ? (
               <a
                 href={`#${CONTACT.id}`}
@@ -238,6 +244,11 @@ export function Nav() {
             </ol>
             <div className={styles.menuFoot}>
               <a href={`mailto:${profile.email}`}>{profile.email}</a>
+              {profile.resume ? (
+                <a href={profile.resume} download={RESUME_FILENAME}>
+                  Download résumé (PDF)
+                </a>
+              ) : null}
               <span>{profile.location}</span>
             </div>
           </div>
