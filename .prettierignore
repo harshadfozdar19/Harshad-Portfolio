@@ -9,3 +9,6 @@ blob-report
 playwright/.cache
 package-lock.json
 next-env.d.ts
+
+# Google Search Console verification file (must stay byte-exact)
+public/google*.html
