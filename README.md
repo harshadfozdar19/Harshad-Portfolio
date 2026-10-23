@@ -14,8 +14,8 @@ systems. It is designed as an investigator's case file and built with Next.js 16
   `src/content/profile.ts`. Components only render data.
 - **Accessible by default.** Semantic landmarks, one `h1`, a skip link, visible focus and 44px touch
   targets. Every animation respects `prefers-reduced-motion`, and pages work from 320px wide.
-- **No third-party requests.** Fonts are self-hosted through `next/font`, and there are no analytics,
-  tag managers or external embeds.
+- **No third-party requests.** Fonts are self-hosted through `next/font`. The only analytics is
+  cookieless, first-party Vercel Web Analytics (Vercel builds only); no tag managers or external embeds.
 - **SEO and sharing.** Metadata API, `Person` JSON-LD, a generated 1200×630 Open Graph card, SVG
   favicon, `robots.txt` and `sitemap.xml`.
 - **Hardened responses.** HSTS, `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy` and

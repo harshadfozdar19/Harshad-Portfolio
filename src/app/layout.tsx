@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { IBM_Plex_Mono, IBM_Plex_Sans, Instrument_Serif } from "next/font/google";
 import type { ReactNode } from "react";
 import { Providers } from "@/components/Providers";
@@ -152,6 +153,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           Skip to content
         </a>
         <Providers>{children}</Providers>
+        {/* Cookieless, first-party visitor counts. The script only exists on Vercel, so local
+            and CI builds (no VERCEL=1) leave it out instead of requesting a missing file. */}
+        {process.env.VERCEL === "1" ? <Analytics /> : null}
       </body>
     </html>
   );
