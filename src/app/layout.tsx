@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans, Instrument_Serif } from "next/font/google";
 import type { ReactNode } from "react";
 import { Providers } from "@/components/Providers";
-import { profile } from "@/content/profile";
+import { profile, skills } from "@/content/profile";
 import { siteUrl, isPublicDeployment } from "@/lib/site";
 import "./globals.css";
 
@@ -28,32 +28,52 @@ const plexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
-const description = `${profile.name}: ${profile.role} building cybersecurity, OSINT and AI investigation systems with TypeScript, NestJS, Next.js, LangGraph and Gemini.`;
+const title = `${profile.name} | Full Stack & AI Engineer (Next.js, LangGraph, OSINT)`;
+const description = `${profile.name} is a Full Stack & AI Engineer in Jaipur, India, building cybersecurity, OSINT and AI investigation systems with TypeScript, NestJS, Next.js, LangGraph, RAG and Gemini.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${profile.name} · ${profile.role}`,
+    default: title,
     template: `%s · ${profile.name}`,
   },
   description,
+  keywords: [
+    profile.name,
+    "Full Stack Developer",
+    "AI Engineer",
+    "Next.js Developer",
+    "LangGraph",
+    "RAG",
+    "OSINT",
+    "Cybersecurity",
+    "NestJS",
+    "TypeScript",
+    "Jaipur",
+    "India",
+  ],
+  alternates: { canonical: "/" },
   authors: [{ name: profile.name, url: profile.linkedin }],
   creator: profile.name,
   openGraph: {
     type: "profile",
-    title: `${profile.name} · ${profile.role}`,
+    title,
     description,
     url: "/",
     siteName: profile.name,
     locale: "en_IN",
+    firstName: profile.firstName,
+    lastName: profile.lastName,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${profile.name} · ${profile.role}`,
+    title,
     description,
   },
   // Stay out of search engines until the site is deliberately deployed with NEXT_PUBLIC_SITE_URL.
-  robots: isPublicDeployment ? { index: true, follow: true } : { index: false, follow: false },
+  robots: isPublicDeployment
+    ? { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } }
+    : { index: false, follow: false },
 };
 
 export const viewport: Viewport = {
@@ -66,33 +86,50 @@ export const viewport: Viewport = {
 /** Applies a saved theme before first paint so there is no light/dark flash. */
 const themeScript = `(function(){try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}})();`;
 
-const personJsonLd = {
+const pageUrl = new URL("/", siteUrl).href;
+const personId = `${pageUrl}#person`;
+
+/** ProfilePage + Person (Google's profile-page structured data) and WebSite. */
+const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: profile.name,
-  jobTitle: profile.role,
-  worksFor: { "@type": "Organization", name: "Frautect Technologies" },
-  alumniOf: { "@type": "CollegeOrUniversity", name: "Chandigarh University" },
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Jaipur",
-    addressRegion: "Rajasthan",
-    addressCountry: "IN",
-  },
-  sameAs: [profile.linkedin],
-  knowsAbout: [
-    "TypeScript",
-    "NestJS",
-    "Next.js",
-    "LangGraph",
-    "Gemini",
-    "RAG",
-    "OSINT",
-    "BullMQ",
-    "Playwright",
-    "PostgreSQL",
-    "Prompt Engineering",
-    "Context Engineering",
+  "@graph": [
+    {
+      "@type": "ProfilePage",
+      "@id": `${pageUrl}#profile`,
+      url: pageUrl,
+      name: title,
+      description,
+      inLanguage: "en",
+      mainEntity: { "@id": personId },
+    },
+    {
+      "@type": "Person",
+      "@id": personId,
+      name: profile.name,
+      givenName: profile.firstName,
+      familyName: profile.lastName,
+      url: pageUrl,
+      jobTitle: profile.role,
+      description: profile.summary,
+      ...(profile.photo ? { image: new URL(profile.photo, siteUrl).href } : {}),
+      worksFor: { "@type": "Organization", name: "Frautect Technologies" },
+      alumniOf: { "@type": "CollegeOrUniversity", name: "Chandigarh University" },
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Jaipur",
+        addressRegion: "Rajasthan",
+        addressCountry: "IN",
+      },
+      sameAs: [profile.linkedin, "https://github.com/harshadfozdar19"],
+      knowsAbout: skills.flatMap((group) => group.items),
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${pageUrl}#website`,
+      url: pageUrl,
+      name: profile.name,
+      publisher: { "@id": personId },
+    },
   ],
 };
 
@@ -107,7 +144,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c") }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
         />
       </head>
       <body>
